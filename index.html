@@ -1,0 +1,824 @@
+<html lang="fr" data-lt-installed="true"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice de Français CM1 - Sid KHALIFA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #e74c3c;
+        }
+        
+        .header img {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background: transparent;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .author {
+            font-size: 14px;
+            font-style: italic;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .intro p {
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        
+        .question-block {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+            transition: all 0.3s ease;
+        }
+        
+        .question-block:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .question-block.correct {
+            border-left-color: #27ae60;
+            background: #e8f8f5;
+        }
+        
+        .question-block.incorrect {
+            border-left-color: #e74c3c;
+            background: #fadbd8;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .options {
+            margin-top: 15px;
+        }
+        
+        .option {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            background: #ecf0f1;
+            border-color: #3498db;
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        input[type="text"].correct {
+            border-color: #27ae60;
+            background: #e8f8f5;
+        }
+        
+        input[type="text"].incorrect {
+            border-color: #e74c3c;
+            background: #fadbd8;
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .score-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+        }
+        
+        .btn-download {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+        }
+        
+        .correction-section {
+            display: none;
+            background: #fff3cd;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid #ffc107;
+        }
+        
+        .correction-section h3 {
+            color: #856404;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .correction-item {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .correction-item strong {
+            color: #2c3e50;
+        }
+        
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e8f4f8;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://d2lm3begjhzc49.cloudfront.net/chat-uploads/chat/user/6ac55dbb1980a1b7202845a6/6adcd0101c0a499a6b170edd/89897c32-Logo13.jpg?Expires=1792857779&amp;Key-Pair-Id=K686UU7CBI0M6&amp;Signature=1UvFp-NHToBFKlRS3jR0dMv6F05FqWmS13WtGIB2UCGp0BxieN1VexWIMFavvkenpeg0-ByT6-33HVQkVBsZsGoxqNb9PXDU9q0jZ5nz6wq5PjyDMexkVRwYRHoPK5JRG6nHoi2LlX7euIrwXv6HBK~2MZdSC-CeqQOLOCHO07nel6Ln~tCQDfWqzuwr8s2VoshOeIRZlCO~HwjbkiyqaXTKSsIztAnTT2fMv3aVkQL6J98GzB4ghMVYQ-6etWXuY7QU-fAJ7iBe6BcB3I41mqGqoG7aUVU3syhixIuxAK0Z-8rhda5usd8~VZaFLHhqao0ieOPGIm522WEhFZ1XrQ__&amp;Hash-Algorithm=SHA256" alt="Logo Fransid">
+            <h1>📚 Exercice de Français - CM1</h1>
+            <p class="author">Exercice créé par Sid KHALIFA</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <p><strong>📝 Instructions :</strong> Réponds aux 20 questions suivantes. Les réponses correctes s'afficheront en vert ✅ et les incorrectes en rouge ❌. Bonne chance !</p>
+            </div>
+            
+            <!-- Question 1 -->
+            <div class="question-block" id="q1">
+                <div class="question-title">
+                    <span class="question-number">1</span>
+                    <strong>Féminin des adjectifs :</strong> Quel est le féminin de l'adjectif "heureux" ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="a"> heureuse</label>
+                    <label class="option"><input type="radio" name="q1" value="b"> heureuxe</label>
+                    <label class="option"><input type="radio" name="q1" value="c"> heureusée</label>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question-block" id="q2">
+                <div class="question-title">
+                    <span class="question-number">2</span>
+                    <strong>Imparfait :</strong> Conjugue le verbe "avoir" à l'imparfait, 1ère personne du pluriel.
+                </div>
+                <input type="text" id="answer2" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback2"></div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question-block" id="q3">
+                <div class="question-title">
+                    <span class="question-number">3</span>
+                    <strong>Passé composé :</strong> Quelle phrase est correctement conjuguée au passé composé ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q3" value="a"> Nous sommes allés au cinéma.</label>
+                    <label class="option"><input type="radio" name="q3" value="b"> Nous avons allés au cinéma.</label>
+                    <label class="option"><input type="radio" name="q3" value="c"> Nous sont allés au cinéma.</label>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question-block" id="q4">
+                <div class="question-title">
+                    <span class="question-number">4</span>
+                    <strong>Champ lexical :</strong> Quel mot appartient au champ lexical de la mer ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q4" value="a"> vague</label>
+                    <label class="option"><input type="radio" name="q4" value="b"> montagne</label>
+                    <label class="option"><input type="radio" name="q4" value="c"> forêt</label>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question-block" id="q5">
+                <div class="question-title">
+                    <span class="question-number">5</span>
+                    <strong>Accord :</strong> Complète : "Les filles sont __________ à la fête." (venir - passé composé)
+                </div>
+                <input type="text" id="answer5" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback5"></div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="question-block" id="q6">
+                <div class="question-title">
+                    <span class="question-number">6</span>
+                    <strong>Vrai ou Faux :</strong> À l'imparfait, tous les verbes se terminent par -ais, -ais, -ait, -ions, -iez, -aient.
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q6" value="vrai"> Vrai</label>
+                    <label class="option"><input type="radio" name="q6" value="faux"> Faux</label>
+                </div>
+                <div class="feedback" id="feedback6"></div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="question-block" id="q7">
+                <div class="question-title">
+                    <span class="question-number">7</span>
+                    <strong>Féminin des adjectifs :</strong> Écris le féminin de "sportif".
+                </div>
+                <input type="text" id="answer7" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback7"></div>
+            </div>
+            
+            <!-- Question 8 -->
+            <div class="question-block" id="q8">
+                <div class="question-title">
+                    <span class="question-number">8</span>
+                    <strong>Passé composé :</strong> Quel auxiliaire utilise-t-on avec le verbe "manger" au passé composé ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q8" value="a"> être</label>
+                    <label class="option"><input type="radio" name="q8" value="b"> avoir</label>
+                    <label class="option"><input type="radio" name="q8" value="c"> les deux</label>
+                </div>
+                <div class="feedback" id="feedback8"></div>
+            </div>
+            
+            <!-- Question 9 -->
+            <div class="question-block" id="q9">
+                <div class="question-title">
+                    <span class="question-number">9</span>
+                    <strong>Champ lexical :</strong> Trouve l'intrus dans le champ lexical de l'école : cahier, stylo, voiture, tableau.
+                </div>
+                <input type="text" id="answer9" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback9"></div>
+            </div>
+            
+            <!-- Question 10 -->
+            <div class="question-block" id="q10">
+                <div class="question-title">
+                    <span class="question-number">10</span>
+                    <strong>Imparfait :</strong> Conjugue "être" à l'imparfait, 3ème personne du singulier.
+                </div>
+                <input type="text" id="answer10" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback10"></div>
+            </div>
+            
+            <!-- Question 11 -->
+            <div class="question-block" id="q11">
+                <div class="question-title">
+                    <span class="question-number">11</span>
+                    <strong>Accord :</strong> Quelle phrase est correctement accordée ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q11" value="a"> Les oiseaux ont chanté toute la matinée.</label>
+                    <label class="option"><input type="radio" name="q11" value="b"> Les oiseaux ont chantés toute la matinée.</label>
+                    <label class="option"><input type="radio" name="q11" value="c"> Les oiseaux a chanté toute la matinée.</label>
+                </div>
+                <div class="feedback" id="feedback11"></div>
+            </div>
+            
+            <!-- Question 12 -->
+            <div class="question-block" id="q12">
+                <div class="question-title">
+                    <span class="question-number">12</span>
+                    <strong>Féminin des adjectifs :</strong> Quel est le féminin de "ancien" ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q12" value="a"> ancienne</label>
+                    <label class="option"><input type="radio" name="q12" value="b"> ancièn e</label>
+                    <label class="option"><input type="radio" name="q12" value="c"> anciéne</label>
+                </div>
+                <div class="feedback" id="feedback12"></div>
+            </div>
+            
+            <!-- Question 13 -->
+            <div class="question-block" id="q13">
+                <div class="question-title">
+                    <span class="question-number">13</span>
+                    <strong>Vrai ou Faux :</strong> Le verbe "partir" se conjugue avec l'auxiliaire "être" au passé composé.
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q13" value="vrai"> Vrai</label>
+                    <label class="option"><input type="radio" name="q13" value="faux"> Faux</label>
+                </div>
+                <div class="feedback" id="feedback13"></div>
+            </div>
+            
+            <!-- Question 14 -->
+            <div class="question-block" id="q14">
+                <div class="question-title">
+                    <span class="question-number">14</span>
+                    <strong>Champ lexical :</strong> Choisis trois mots du champ lexical de la musique parmi : guitare, trompette, ballon, piano, table.
+                </div>
+                <input type="text" id="answer14" placeholder="Sépare les mots par des virgules...">
+                <div class="feedback" id="feedback14"></div>
+            </div>
+            
+            <!-- Question 15 -->
+            <div class="question-block" id="q15">
+                <div class="question-title">
+                    <span class="question-number">15</span>
+                    <strong>Imparfait :</strong> Comment conjugues-tu "finir" à l'imparfait, 2ème personne du pluriel ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q15" value="a"> vous finissiez</label>
+                    <label class="option"><input type="radio" name="q15" value="b"> vous finiriez</label>
+                    <label class="option"><input type="radio" name="q15" value="c"> vous finissez</label>
+                </div>
+                <div class="feedback" id="feedback15"></div>
+            </div>
+            
+            <!-- Question 16 -->
+            <div class="question-block" id="q16">
+                <div class="question-title">
+                    <span class="question-number">16</span>
+                    <strong>Passé composé :</strong> Complète : "Elle __________ un gâteau." (faire - passé composé)
+                </div>
+                <input type="text" id="answer16" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback16"></div>
+            </div>
+            
+            <!-- Question 17 -->
+            <div class="question-block" id="q17">
+                <div class="question-title">
+                    <span class="question-number">17</span>
+                    <strong>Accord :</strong> Complète avec l'accord correct : "Marie et Sophie sont __________." (fatiguer - participe passé)
+                </div>
+                <input type="text" id="answer17" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback17"></div>
+            </div>
+            
+            <!-- Question 18 -->
+            <div class="question-block" id="q18">
+                <div class="question-title">
+                    <span class="question-number">18</span>
+                    <strong>Féminin des adjectifs :</strong> Écris le féminin de "beau".
+                </div>
+                <input type="text" id="answer18" placeholder="Écris ta réponse ici...">
+                <div class="feedback" id="feedback18"></div>
+            </div>
+            
+            <!-- Question 19 -->
+            <div class="question-block" id="q19">
+                <div class="question-title">
+                    <span class="question-number">19</span>
+                    <strong>Vrai ou Faux :</strong> Avec l'auxiliaire "avoir", le participe passé s'accorde toujours avec le sujet.
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q19" value="vrai"> Vrai</label>
+                    <label class="option"><input type="radio" name="q19" value="faux"> Faux</label>
+                </div>
+                <div class="feedback" id="feedback19"></div>
+            </div>
+            
+            <!-- Question 20 -->
+            <div class="question-block" id="q20">
+                <div class="question-title">
+                    <span class="question-number">20</span>
+                    <strong>Imparfait :</strong> À l'imparfait, quelle est la terminaison de la 1ère personne du singulier ?
+                </div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q20" value="a"> -ais</label>
+                    <label class="option"><input type="radio" name="q20" value="b"> -ai</label>
+                    <label class="option"><input type="radio" name="q20" value="c"> -ait</label>
+                </div>
+                <div class="feedback" id="feedback20"></div>
+            </div>
+            
+            <div class="score-container" id="scoreDisplay">
+                Score : <span id="score">0</span> / 20
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-success" onclick="showCorrection()">📖 Voir le corrigé avec explications</button>
+                <button class="btn btn-download" onclick="downloadHTML()">⬇️ Télécharger l'exercice</button>
+            </div>
+            
+            <div class="correction-section" id="correctionSection">
+                <h3>📚 Corrigé avec explications</h3>
+                
+                <div class="correction-item">
+                    <strong>Question 1 :</strong> <span class="correct-answer">a) heureuse</span>
+                    <div class="explanation">💡 Les adjectifs en "-eux" font leur féminin en "-euse". Exemples : joyeux → joyeuse, peureux → peureuse.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 2 :</strong> <span class="correct-answer">nous avions</span>
+                    <div class="explanation">💡 À l'imparfait, "avoir" se conjugue : j'avais, tu avais, il/elle avait, nous avions, vous aviez, ils/elles avaient.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 3 :</strong> <span class="correct-answer">a) Nous sommes allés au cinéma.</span>
+                    <div class="explanation">💡 Le verbe "aller" se conjugue au passé composé avec l'auxiliaire "être" : je suis allé(e), tu es allé(e), nous sommes allé(e)s...</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 4 :</strong> <span class="correct-answer">a) vague</span>
+                    <div class="explanation">💡 Le champ lexical de la mer inclut : vague, océan, poisson, plage, bateau, marée, etc.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 5 :</strong> <span class="correct-answer">venues</span>
+                    <div class="explanation">💡 Le verbe "venir" se conjugue avec "être" au passé composé. Le participe passé s'accorde avec le sujet féminin pluriel : elles sont venues.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 6 :</strong> <span class="correct-answer">Vrai</span>
+                    <div class="explanation">💡 C'est vrai ! Tous les verbes à l'imparfait (même irréguliers) ont les mêmes terminaisons : -ais, -ais, -ait, -ions, -iez, -aient.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 7 :</strong> <span class="correct-answer">sportive</span>
+                    <div class="explanation">💡 Les adjectifs en "-if" font leur féminin en "-ive". Exemples : actif → active, créatif → créative.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 8 :</strong> <span class="correct-answer">b) avoir</span>
+                    <div class="explanation">💡 Le verbe "manger" utilise l'auxiliaire "avoir" au passé composé : j'ai mangé, tu as mangé, il/elle a mangé...</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 9 :</strong> <span class="correct-answer">voiture</span>
+                    <div class="explanation">💡 "Voiture" n'appartient pas au champ lexical de l'école. Les autres mots (cahier, stylo, tableau) sont liés à l'école.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 10 :</strong> <span class="correct-answer">il était / elle était</span>
+                    <div class="explanation">💡 "Être" à l'imparfait : j'étais, tu étais, il/elle était, nous étions, vous étiez, ils/elles étaient.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 11 :</strong> <span class="correct-answer">a) Les oiseaux ont chanté toute la matinée.</span>
+                    <div class="explanation">💡 Avec l'auxiliaire "avoir", le participe passé ne s'accorde pas avec le sujet (sauf si le COD est placé avant). On écrit donc "ont chanté" (sans "s").</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 12 :</strong> <span class="correct-answer">a) ancienne</span>
+                    <div class="explanation">💡 Les adjectifs en "-en" doublent le "n" au féminin et ajoutent un "e". Exemples : ancien → ancienne, européen → européenne.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 13 :</strong> <span class="correct-answer">Vrai</span>
+                    <div class="explanation">💡 "Partir" fait partie des verbes qui se conjuguent avec "être" au passé composé : je suis parti(e), tu es parti(e), etc.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 14 :</strong> <span class="correct-answer">guitare, trompette, piano</span>
+                    <div class="explanation">💡 Le champ lexical de la musique comprend tous les instruments et termes liés à la musique : guitare, trompette, piano, violon, chanson, mélodie...</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 15 :</strong> <span class="correct-answer">a) vous finissiez</span>
+                    <div class="explanation">💡 À l'imparfait, on prend le radical du verbe à la 1ère personne du pluriel du présent (nous finissons → finiss-) et on ajoute les terminaisons de l'imparfait.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 16 :</strong> <span class="correct-answer">a fait</span>
+                    <div class="explanation">💡 "Faire" au passé composé avec l'auxiliaire "avoir" : elle a fait, nous avons fait, ils ont fait...</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 17 :</strong> <span class="correct-answer">fatiguées</span>
+                    <div class="explanation">💡 Avec l'auxiliaire "être", le participe passé s'accorde avec le sujet. "Marie et Sophie" = féminin pluriel → fatiguées.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 18 :</strong> <span class="correct-answer">belle</span>
+                    <div class="explanation">💡 "Beau" est un adjectif irrégulier. Au féminin : beau → belle. Autres formes masculines : bel (devant voyelle ou h muet).</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 19 :</strong> <span class="correct-answer">Faux</span>
+                    <div class="explanation">💡 Avec l'auxiliaire "avoir", le participe passé ne s'accorde généralement PAS avec le sujet. Il s'accorde seulement si le COD est placé avant le verbe.</div>
+                </div>
+                
+                <div class="correction-item">
+                    <strong>Question 20 :</strong> <span class="correct-answer">a) -ais</span>
+                    <div class="explanation">💡 À l'imparfait, la 1ère personne du singulier se termine toujours par "-ais" : j'étais, j'avais, je finissais, je chantais...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Réponses correctes
+        const correctAnswers = {
+            q1: 'a',
+            q2: 'nous avions',
+            q3: 'a',
+            q4: 'a',
+            q5: 'venues',
+            q6: 'vrai',
+            q7: 'sportive',
+            q8: 'b',
+            q9: 'voiture',
+            q10: ['il était', 'elle était', 'était'],
+            q11: 'a',
+            q12: 'a',
+            q13: 'vrai',
+            q14: ['guitare, trompette, piano', 'guitare,trompette,piano', 'piano, guitare, trompette', 'trompette, piano, guitare', 'piano,guitare,trompette', 'trompette,piano,guitare'],
+            q15: 'a',
+            q16: 'a fait',
+            q17: 'fatiguées',
+            q18: 'belle',
+            q19: 'faux',
+            q20: 'a'
+        };
+        
+        // Vérification automatique pour QCM
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const questionName = this.name;
+                const questionBlock = document.getElementById(questionName);
+                const feedback = document.getElementById('feedback' + questionName.substring(1));
+                const selectedValue = this.value;
+                const correctAnswer = correctAnswers[questionName];
+                
+                if (selectedValue === correctAnswer) {
+                    questionBlock.classList.remove('incorrect');
+                    questionBlock.classList.add('correct');
+                    feedback.className = 'feedback correct';
+                    feedback.textContent = '✅ Bravo ! Bonne réponse !';
+                } else {
+                    questionBlock.classList.remove('correct');
+                    questionBlock.classList.add('incorrect');
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = '❌ Oups ! Ce n\'est pas la bonne réponse.';
+                }
+                
+                updateScore();
+            });
+        });
+        
+        // Vérification pour les champs texte
+        const textInputs = ['answer2', 'answer5', 'answer7', 'answer9', 'answer10', 'answer14', 'answer16', 'answer17', 'answer18'];
+        
+        textInputs.forEach(inputId => {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.addEventListener('blur', function() {
+                    checkTextAnswer(this);
+                });
+                input.addEventListener('keyup', function(e) {
+                    if (e.key === 'Enter') {
+                        checkTextAnswer(this);
+                    }
+                });
+            }
+        });
+        
+        function checkTextAnswer(input) {
+            const questionNum = input.id.replace('answer', '');
+            const questionBlock = document.getElementById('q' + questionNum);
+            const feedback = document.getElementById('feedback' + questionNum);
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = correctAnswers['q' + questionNum];
+            
+            let isCorrect = false;
+            
+            if (Array.isArray(correctAnswer)) {
+                isCorrect = correctAnswer.some(answer => 
+                    userAnswer === answer.toLowerCase() || 
+                    userAnswer.replace(/\s+/g, '') === answer.toLowerCase().replace(/\s+/g, '')
+                );
+            } else {
+                isCorrect = userAnswer === correctAnswer.toLowerCase();
+            }
+            
+            if (isCorrect) {
+                input.classList.remove('incorrect');
+                input.classList.add('correct');
+                questionBlock.classList.remove('incorrect');
+                questionBlock.classList.add('correct');
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✅ Bravo ! Bonne réponse !';
+            } else if (userAnswer !== '') {
+                input.classList.remove('correct');
+                input.classList.add('incorrect');
+                questionBlock.classList.remove('correct');
+                questionBlock.classList.add('incorrect');
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Oups ! Ce n\'est pas la bonne réponse.';
+            }
+            
+            updateScore();
+        }
+        
+        function updateScore() {
+            let score = 0;
+            
+            // Compter les QCM corrects
+            Object.keys(correctAnswers).forEach(key => {
+                if (key.startsWith('q') && !key.includes('answer')) {
+                    const questionBlock = document.getElementById(key);
+                    if (questionBlock && questionBlock.classList.contains('correct')) {
+                        score++;
+                    }
+                }
+            });
+            
+            document.getElementById('score').textContent = score;
+        }
+        
+        function showCorrection() {
+            const correctionSection = document.getElementById('correctionSection');
+            if (correctionSection.style.display === 'none' || correctionSection.style.display === '') {
+                correctionSection.style.display = 'block';
+                correctionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                correctionSection.style.display = 'none';
+            }
+        }
+        
+        function downloadHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'exercice_francais_CM1_Sid_KHALIFA.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ Téléchargement réussi ! Le fichier a été enregistré.');
+        }
+    </script>
+
+</body></html>
